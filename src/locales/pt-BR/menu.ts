@@ -1,5 +1,6 @@
 export default {
-  'menu.welcome': 'Welcome',
+  'menu.welcome': 'Bem-vindo',
+  'menu.customer': 'Cliente',
   'menu.more-blocks': 'More Blocks',
   'menu.home': 'Início',
   'menu.login': 'Login',

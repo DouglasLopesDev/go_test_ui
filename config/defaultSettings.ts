@@ -7,7 +7,7 @@ type DefaultSettings = ProSettings & {
 const proSettings: DefaultSettings = {
   navTheme: 'dark',
   // 拂晓蓝
-  primaryColor: '#1890ff',
+  primaryColor: '#ffffff',
   layout: 'side',
   contentWidth: 'Fluid',
   fixedHeader: false,
@@ -16,7 +16,7 @@ const proSettings: DefaultSettings = {
   menu: {
     locale: true,
   },
-  title: 'Ant Design Pro',
+  title: 'Go Test',
   pwa: false,
   iconfontUrl: '',
 };

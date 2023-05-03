@@ -1,6 +1,7 @@
 import { Effect, Reducer } from 'umi';
 
 import { queryCurrent, query as queryUsers } from '@/services/user';
+import { defaultUserTrack, IUserTrack } from '@/utils/entity';
 
 export interface CurrentUser {
   avatar?: string;
@@ -18,6 +19,7 @@ export interface CurrentUser {
 
 export interface UserModelState {
   currentUser?: CurrentUser;
+  userTrack: IUserTrack;
 }
 
 export interface UserModelType {
@@ -28,6 +30,7 @@ export interface UserModelType {
     fetchCurrent: Effect;
   };
   reducers: {
+    saveUserTrack: Reducer<UserModelState>;
     saveCurrentUser: Reducer<UserModelState>;
     changeNotifyCount: Reducer<UserModelState>;
   };
@@ -38,6 +41,7 @@ const UserModel: UserModelType = {
 
   state: {
     currentUser: {},
+    userTrack: defaultUserTrack
   },
 
   effects: {
@@ -54,10 +58,29 @@ const UserModel: UserModelType = {
         type: 'saveCurrentUser',
         payload: response,
       });
+
+      if(response) {
+        const userTrack : IUserTrack = {
+          name: response.name,
+          email: response.email,
+          id: response.userid
+        }
+
+        yield put({
+          type: 'saveUserTrack',
+          payload: userTrack
+        });
+      }
     },
   },
 
   reducers: {
+    saveUserTrack(state, action) {
+      return {
+        ...state,
+        userTrack: action.payload || {},
+      };
+    },
     saveCurrentUser(state, action) {
       return {
         ...state,
